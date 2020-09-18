@@ -1,5 +1,5 @@
-import {VierOpEenRij} from "./model/VierOpEenRij.js"
+import {FourInARow} from "./model/FourInARow.js"
 
 window.addEventListener("load", (e)=>{
-    new VierOpEenRij();
+    new FourInARow();
 }, false);

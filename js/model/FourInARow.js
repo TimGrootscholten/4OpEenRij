@@ -1,9 +1,9 @@
-import { FourOnARowView } from "../view/FourOnARowView.js"
-export class FourOnARow extends EventTarget {
+import { FourInARowView } from "../view/FourInARowView.js"
+export class FourInARow extends EventTarget {
     
     constructor() {
         super();
-        this.FourOnARowView = new FourOnARowView();
+        this.FourInARowView = new FourInARowView();
         document.getElementById("startButton").addEventListener('click', () => {
             this.start();
         });
@@ -22,7 +22,7 @@ export class FourOnARow extends EventTarget {
             player2Name = "Player 2"
         }
         document.getElementById("start").style.display = 'none';
-        return this.FourOnARowView.showboard(player1Name, player2Name);
+        return this.FourInARowView.showboard(player1Name, player2Name);
     }
 
     move(id, board) {
@@ -79,7 +79,7 @@ export class FourOnARow extends EventTarget {
             playerId = player1;
             this.player = true;
         }
-        return this.FourOnARowView.setMove(y, x, playerId, board);
+        return this.FourInARowView.setMove(y, x, playerId, board);
     }
 
     checkForWin(board, playerId) {
@@ -94,7 +94,7 @@ export class FourOnARow extends EventTarget {
                     inrow = 0;
                 }
                 if (inrow == 4) {
-                    return this.FourOnARowView.win(playerId);
+                    return this.FourInARowView.win(playerId);
                 }
             }
         }
@@ -108,7 +108,7 @@ export class FourOnARow extends EventTarget {
                     inrow = 0;
                 }
                 if (inrow == 4) {
-                    return this.FourOnARowView.win(playerId);
+                    return this.FourInARowView.win(playerId);
                 }
             }
         }
@@ -123,7 +123,7 @@ export class FourOnARow extends EventTarget {
                     inrow = 0;
                 }
                 if (inrow == 4) {
-                    return this.FourOnARowView.win(playerId);
+                    return this.FourInARowView.win(playerId);
                 }
                 x++;
             }
@@ -137,7 +137,7 @@ export class FourOnARow extends EventTarget {
                     inrow = 0;
                 }
                 if (inrow == 4) {
-                    return this.FourOnARowView.win(playerId);
+                    return this.FourInARowView.win(playerId);
                 }
                 x++;
             }
@@ -152,7 +152,7 @@ export class FourOnARow extends EventTarget {
                     inrow = 0;
                 }
                 if (inrow == 4) {
-                    return this.FourOnARowView.win(playerId);
+                    return this.FourInARowView.win(playerId);
                 }
                 x--;
 
@@ -168,7 +168,7 @@ export class FourOnARow extends EventTarget {
                     inrow = 0;
                 }
                 if (inrow == 4) {
-                    return this.FourOnARowView.win(playerId);
+                    return this.FourInARowView.win(playerId);
                 }
                 x--;
             }
@@ -180,7 +180,7 @@ export class FourOnARow extends EventTarget {
                 inrow++
             }
             if (inrow == 7) {
-                return this.FourOnARowView.win("tie");
+                return this.FourInARowView.win("tie");
             }
         }
 
