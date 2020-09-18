@@ -21,7 +21,7 @@ export class VierOpEenRij extends EventTarget {
             player2Name = "Player 2"
         }
         document.getElementById("start").style.display = 'none';
-        this.vierOpEenRijView.showboard(player1Name, player2Name);
+        return this.vierOpEenRijView.showboard(player1Name, player2Name);
     }
     move(id, board) {
         //kijkt waar de move is
@@ -59,17 +59,16 @@ export class VierOpEenRij extends EventTarget {
                     yy--;
                     emty = false;
                 }
-
             }
             y = yy;
-            this.playercontrol(y, x, board);
+            return this.playercontrol(y, x, board);
         }
     }
     playercontrol(y, x, board) {
         const player1 = 1;
         const player2 = 2;
         let playerId;
-       //geeft de player omstebeurt 
+        //geeft de player omstebeurt 
         if (this.player == true) {
             playerId = player2;
             this.player = false;
@@ -77,12 +76,112 @@ export class VierOpEenRij extends EventTarget {
             playerId = player1;
             this.player = true;
         }
-        this.vierOpEenRijView.setMove(y, x, playerId, board);
+        return this.vierOpEenRijView.setMove(y, x, playerId, board);
 
 
 
     }
-    checkForWin() {
+    checkForWin(board, playerId) {
+        //horzontaal
+        let inrow = 0;
+        for (let y = 0; y <= 5; y++) {
+            inrow = 0;
+            for (let x = 0; x <= 6; x++) {
+                if (board[y][x] == playerId) {
+                    inrow++;
+                } else {
+                    inrow = 0;
+                }
+                if (inrow == 4) {
+                    return this.vierOpEenRijView.win(playerId);
+                }
+            }
+        }
+        //verticaal
+        for (let x = 0; x <= 6; x++) {
+            inrow = 0;
+            for (let y = 0; y <= 5; y++) {
+                if (board[y][x] == playerId) {
+                    inrow++;
+                } else {
+                    inrow = 0;
+                }
+                if (inrow == 4) {
+                    return this.vierOpEenRijView.win(playerId);
+                }
+            }
+        }
+        //digonaal
+        //links naar rechts
+        for (let xx = 0; xx <= 3; xx++) {
+            let x = 0 + xx;
+            for (let y = 0; y <= 5 && x <=6; y++)  {
+                if (board[y][x] == playerId) {
+                    inrow++;
+                } else {
+                    inrow = 0;
+                }
+                if (inrow == 4) {
+                    return this.vierOpEenRijView.win(playerId);
+                }
+                x++;
+            }
+        }
+        for (let yy = 1; yy <= 2; yy++) {
+            let x = 0;
+            for (let y = 0 +yy; y <= 5 && x <=6; y++)  {
+                if (board[y][x] == playerId) {
+                    inrow++;
+                } else {
+                    inrow = 0;
+                }
+                if (inrow == 4) {
+                    return this.vierOpEenRijView.win(playerId);
+                }
+                x++;
+            }
+        }
+        //rechts naar links
+        for (let xx = 6; xx >= 3; xx--) {
+            let x = 0 + xx;
+            for (let y = 0; y <= 5 && x >= 0; y++)  {
+                if (board[y][x] == playerId) {
+                    inrow++;
+                } else {
+                    inrow = 0;
+                }
+                if (inrow == 4) {
+                    return this.vierOpEenRijView.win(playerId);
+                }
+                x--;
+                
+            }
+        }
+        for (let yy = 1; yy <= 2; yy++) {
+            let x = 6;
+            for (let y = 0 +yy; y <= 5 && x <=6; y++)  {
+                
+                if (board[y][x] == playerId) {
+                    inrow++;
+                } else {
+                    inrow = 0;
+                }
+                if (inrow == 4) {
+                    return this.vierOpEenRijView.win(playerId);
+                }
+                x--;
+            }
+        }
+        //tie
+        inrow = 0;
+        for (let x = 0; x <= 6; x++) {
+            if (!board[0][x] == 0) {
+                inrow++
+            }
+            if (inrow == 7) {
+                return this.vierOpEenRijView.win("tie");
+            }
+        }
 
     }
 }
