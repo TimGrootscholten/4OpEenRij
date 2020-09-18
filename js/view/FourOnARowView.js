@@ -1,8 +1,8 @@
-import { VierOpEenRij } from "../model/VierOpEenRij.js"
+import { FourOnARow } from "../model/FourOnARow.js"
 export class VierOpEenRijView {
     //laat de speelboard in
     showboard(player1Name, player2Name) {
-        this.vierOpEenRij = new VierOpEenRij();
+        this.FourOnARow = new FourOnARow();
 
         //zet de playername neer
         document.querySelector("player1").insertAdjacentHTML('beforeend', player1Name);
@@ -24,13 +24,14 @@ export class VierOpEenRijView {
             //kijkt voor een klik
             let box = document.getElementById(i);
             box.addEventListener('click', () => {
-                return this.vierOpEenRij.move(i, board);
+                return this.FourOnARow.move(i, board);
             });
         }
     }
 
     setMove(y, x, playerId, board) {
-        this.vierOpEenRij = new VierOpEenRij();
+        //zet de munt in de goede plek
+        this.FourOnARow = new FourOnARow();
         let id = y * 7 + x;
         board[y][x] = playerId;
         if (playerId === 1) {
@@ -38,12 +39,12 @@ export class VierOpEenRijView {
         } else {
             document.getElementById(id).innerHTML = ' <img src="img/rood_rondje_v2.png" alt="geele coin" width="120" height="120">';
         }
-        return this.vierOpEenRij.checkForWin(board, playerId);
+        return this.FourOnARow.checkForWin(board, playerId);
     }
 
     win(playerId) {
-        
-        alert("Player: "+ playerId + " heeft gewonnen!!!");
+
+        return alert("Player: " + playerId + " heeft gewonnen!!!");
     }
 
 }

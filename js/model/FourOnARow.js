@@ -1,14 +1,15 @@
-import { VierOpEenRijView } from "../view/VierOpEenRijView.js"
-export class VierOpEenRij extends EventTarget {
+import { FourOnARowView } from "../view/FourOnARowView.js"
+export class FourOnARow extends EventTarget {
+    
     constructor() {
         super();
-        this.vierOpEenRijView = new VierOpEenRijView();
+        this.FourOnARowView = new FourOnARowView();
         document.getElementById("startButton").addEventListener('click', () => {
             this.start();
-            this.player = true;
         });
-    }
+        this.player = true;
 
+    }
 
     start() {
         //haalt de player name op
@@ -21,8 +22,9 @@ export class VierOpEenRij extends EventTarget {
             player2Name = "Player 2"
         }
         document.getElementById("start").style.display = 'none';
-        return this.vierOpEenRijView.showboard(player1Name, player2Name);
+        return this.FourOnARowView.showboard(player1Name, player2Name);
     }
+
     move(id, board) {
         //kijkt waar de move is
         let y;
@@ -64,6 +66,7 @@ export class VierOpEenRij extends EventTarget {
             return this.playercontrol(y, x, board);
         }
     }
+
     playercontrol(y, x, board) {
         const player1 = 1;
         const player2 = 2;
@@ -76,11 +79,9 @@ export class VierOpEenRij extends EventTarget {
             playerId = player1;
             this.player = true;
         }
-        return this.vierOpEenRijView.setMove(y, x, playerId, board);
-
-
-
+        return this.FourOnARowView.setMove(y, x, playerId, board);
     }
+
     checkForWin(board, playerId) {
         //horzontaal
         let inrow = 0;
@@ -93,7 +94,7 @@ export class VierOpEenRij extends EventTarget {
                     inrow = 0;
                 }
                 if (inrow == 4) {
-                    return this.vierOpEenRijView.win(playerId);
+                    return this.FourOnARowView.win(playerId);
                 }
             }
         }
@@ -107,7 +108,7 @@ export class VierOpEenRij extends EventTarget {
                     inrow = 0;
                 }
                 if (inrow == 4) {
-                    return this.vierOpEenRijView.win(playerId);
+                    return this.FourOnARowView.win(playerId);
                 }
             }
         }
@@ -115,28 +116,28 @@ export class VierOpEenRij extends EventTarget {
         //links naar rechts
         for (let xx = 0; xx <= 3; xx++) {
             let x = 0 + xx;
-            for (let y = 0; y <= 5 && x <=6; y++)  {
+            for (let y = 0; y <= 5 && x <= 6; y++) {
                 if (board[y][x] == playerId) {
                     inrow++;
                 } else {
                     inrow = 0;
                 }
                 if (inrow == 4) {
-                    return this.vierOpEenRijView.win(playerId);
+                    return this.FourOnARowView.win(playerId);
                 }
                 x++;
             }
         }
         for (let yy = 1; yy <= 2; yy++) {
             let x = 0;
-            for (let y = 0 +yy; y <= 5 && x <=6; y++)  {
+            for (let y = 0 + yy; y <= 5 && x <= 6; y++) {
                 if (board[y][x] == playerId) {
                     inrow++;
                 } else {
                     inrow = 0;
                 }
                 if (inrow == 4) {
-                    return this.vierOpEenRijView.win(playerId);
+                    return this.FourOnARowView.win(playerId);
                 }
                 x++;
             }
@@ -144,30 +145,30 @@ export class VierOpEenRij extends EventTarget {
         //rechts naar links
         for (let xx = 6; xx >= 3; xx--) {
             let x = 0 + xx;
-            for (let y = 0; y <= 5 && x >= 0; y++)  {
+            for (let y = 0; y <= 5 && x >= 0; y++) {
                 if (board[y][x] == playerId) {
                     inrow++;
                 } else {
                     inrow = 0;
                 }
                 if (inrow == 4) {
-                    return this.vierOpEenRijView.win(playerId);
+                    return this.FourOnARowView.win(playerId);
                 }
                 x--;
-                
+
             }
         }
         for (let yy = 1; yy <= 2; yy++) {
             let x = 6;
-            for (let y = 0 +yy; y <= 5 && x <=6; y++)  {
-                
+            for (let y = 0 + yy; y <= 5 && x <= 6; y++) {
+
                 if (board[y][x] == playerId) {
                     inrow++;
                 } else {
                     inrow = 0;
                 }
                 if (inrow == 4) {
-                    return this.vierOpEenRijView.win(playerId);
+                    return this.FourOnARowView.win(playerId);
                 }
                 x--;
             }
@@ -179,7 +180,7 @@ export class VierOpEenRij extends EventTarget {
                 inrow++
             }
             if (inrow == 7) {
-                return this.vierOpEenRijView.win("tie");
+                return this.FourOnARowView.win("tie");
             }
         }
 
