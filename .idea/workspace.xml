@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="48958b80-6657-4e9f-8f0f-77b7bdfeab54" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/fourOnARow.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/Stylesheet.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/Stylesheet.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/model/FourInARow.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/model/FourInARow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/view/FourInARowView.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/view/FourInARowView.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1hli9aOxhiZLPHVVVqkGY7HdzN0" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RunManager">
+    <configuration name="FourInARow.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="FourInARow.js" working-dir="$PROJECT_DIR$/index.html">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Node.js.FourInARow.js" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="48958b80-6657-4e9f-8f0f-77b7bdfeab54" name="Default Changelist" comment="" />
+      <created>1600591928930</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1600591928930</updated>
+      <workItem from="1600591929994" duration="5351000" />
+      <workItem from="1600604869172" duration="3076000" />
+      <workItem from="1600609623422" duration="9978000" />
+      <workItem from="1600689283197" duration="1189000" />
+      <workItem from="1600773298821" duration="606000" />
+      <workItem from="1600774931619" duration="54000" />
+      <workItem from="1600781431204" duration="19000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="454" y="211" width="1084" height="708" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600681771387">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state x="454" y="211" width="1084" height="708" key="#com.intellij.execution.impl.EditConfigurationsDialog/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1600681771387" />
+    <state x="787" y="318" width="424" height="491" key="FileChooserDialogImpl" timestamp="1600774983636">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state x="2663" y="298" width="424" height="491" key="FileChooserDialogImpl/72.27.1848.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1600609563953" />
+    <state x="787" y="318" width="424" height="491" key="FileChooserDialogImpl/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1600674753506" />
+    <state x="787" y="318" key="FileChooserDialogImpl/72.27.1848.1053@72.27.1848.1053" timestamp="1600774983636" />
+    <state width="1825" height="266" key="GridCell.Tab.0.bottom" timestamp="1600681774255">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state width="1825" height="266" key="GridCell.Tab.0.bottom/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1600681774255" />
+    <state width="1825" height="266" key="GridCell.Tab.0.center" timestamp="1600681774254">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state width="1825" height="266" key="GridCell.Tab.0.center/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1600681774254" />
+    <state width="1825" height="266" key="GridCell.Tab.0.left" timestamp="1600681774254">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state width="1825" height="266" key="GridCell.Tab.0.left/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1600681774254" />
+    <state width="1825" height="266" key="GridCell.Tab.0.right" timestamp="1600681774254">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state width="1825" height="266" key="GridCell.Tab.0.right/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1600681774254" />
+    <state width="1825" height="328" key="GridCell.Tab.1.bottom" timestamp="1600594025941">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state width="1825" height="328" key="GridCell.Tab.1.bottom/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1600594025941" />
+    <state width="1825" height="328" key="GridCell.Tab.1.center" timestamp="1600594025941">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state width="1825" height="328" key="GridCell.Tab.1.center/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1600594025941" />
+    <state width="1825" height="328" key="GridCell.Tab.1.left" timestamp="1600594025941">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state width="1825" height="328" key="GridCell.Tab.1.left/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1600594025941" />
+    <state width="1825" height="328" key="GridCell.Tab.1.right" timestamp="1600594025941">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state width="1825" height="328" key="GridCell.Tab.1.right/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1600594025941" />
+    <state width="1825" height="328" key="GridCell.Tab.2.bottom" timestamp="1600594025941">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state width="1825" height="328" key="GridCell.Tab.2.bottom/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1600594025941" />
+    <state width="1825" height="328" key="GridCell.Tab.2.center" timestamp="1600594025941">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state width="1825" height="328" key="GridCell.Tab.2.center/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1600594025941" />
+    <state width="1825" height="328" key="GridCell.Tab.2.left" timestamp="1600594025941">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state width="1825" height="328" key="GridCell.Tab.2.left/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1600594025941" />
+    <state width="1825" height="328" key="GridCell.Tab.2.right" timestamp="1600594025941">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state width="1825" height="328" key="GridCell.Tab.2.right/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1600594025941" />
+    <state width="1825" height="328" key="GridCell.Tab.3.bottom" timestamp="1600594025942">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state width="1825" height="328" key="GridCell.Tab.3.bottom/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1600594025942" />
+    <state width="1825" height="328" key="GridCell.Tab.3.center" timestamp="1600594025941">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state width="1825" height="328" key="GridCell.Tab.3.center/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1600594025941" />
+    <state width="1825" height="328" key="GridCell.Tab.3.left" timestamp="1600594025941">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state width="1825" height="328" key="GridCell.Tab.3.left/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1600594025941" />
+    <state width="1825" height="328" key="GridCell.Tab.3.right" timestamp="1600594025942">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state width="1825" height="328" key="GridCell.Tab.3.right/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1600594025942" />
+    <state x="485" y="188" width="1022" height="737" key="SettingsEditor" timestamp="1600597413603">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state x="485" y="188" width="1022" height="737" key="SettingsEditor/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1600597413603" />
+    <state x="2037" y="0" width="1031" height="997" maximized="true" key="dock-window-1" timestamp="1600607759258">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2037" y="0" width="1031" height="997" maximized="true" key="dock-window-1/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1600607759258" />
+    <state x="688" y="94" width="616" height="918" key="find.popup" timestamp="1600592524188">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state x="688" y="94" width="616" height="918" key="find.popup/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1600592524188" />
+    <state x="659" y="259" width="672" height="678" key="search.everywhere.popup" timestamp="1600597094552">
+      <screen x="72" y="27" width="1848" height="1053" />
+    </state>
+    <state x="659" y="259" width="672" height="678" key="search.everywhere.popup/72.27.1848.1053/1920.0.1920.1080@72.27.1848.1053" timestamp="1600597094552" />
+  </component>
+</project>

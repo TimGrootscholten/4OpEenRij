@@ -1,16 +1,11 @@
 import { FourInARowView } from "../view/FourInARowView.js"
-export class FourInARow extends EventTarget {
-    
+export class FourInARow {
     constructor() {
-        super();
         this.FourInARowView = new FourInARowView();
-        document.getElementById("startButton").addEventListener('click', () => {
-            this.start();
-        });
-        this.player = true;
-
+        document.getElementById("startButton").addEventListener('click', () => {this.start();});
+        this.player;
+        this.ai = false;
     }
-
     start() {
         //haalt de player name op
         let player1Name = document.getElementById('player1').value;
@@ -21,138 +16,176 @@ export class FourInARow extends EventTarget {
         if (player2Name === "") {
             player2Name = "Player 2"
         }
-        document.getElementById("start").style.display = 'none';
-        return this.FourInARowView.showboard(player1Name, player2Name);
-    }
 
-    move(id, board) {
+        document.getElementById("start").style.display = 'none';
+        this.FourInARowView.showboard(player1Name, player2Name);
+    }
+    setMove(id, board) {
         //kijkt waar de move is
-        let y;
         let x;
         if (id <= 6) {
-            y = 0;
             x = id;
         } else if (id <= 13) {
-            y = 1;
             x = id - 7;
         } else if (id <= 20) {
-            y = 2;
             x = id - 14;
         } else if (id <= 27) {
-            y = 3;
             x = id - 21;
         } else if (id <= 34) {
-            y = 4;
             x = id - 28;
         } else if (id <= 41) {
-            y = 5;
             x = id - 35;
         }
         //kijkt waar in de rij de munt gezet moet worden
-        if (board[0][x] == 0) {
-            let yy = 0;
+        let y = 0;
+        if (board[0][x] === 0) {
             let emty = true;
             while (emty) {
-                yy++;
-                if (yy === 5 && board[yy][x] == 0) {
+                y++;
+                if (y === 5 && board[y][x] === 0) {
                     emty = false;
                 }
-                if (!board[yy][x] == 0) {
-                    yy--;
+                if (!board[y][x] == 0) {
+                    y--;
                     emty = false;
                 }
             }
-            y = yy;
-            return this.playercontrol(y, x, board);
+            this.player = this.switchPlayer(this.player);
+            console.log(this.player);
+            this.FourInARowView.showMove(y, x, board, this.player);
         }
     }
 
-    playercontrol(y, x, board) {
-        const player1 = 1;
-        const player2 = 2;
-        let playerId;
-        //geeft de player omstebeurt 
-        if (this.player == true) {
-            playerId = player2;
-            this.player = false;
+    switchPlayer(player) {
+        // 1 player1, 2 player2
+        console.log(player);
+        if (player === 1) {
+            return 2;
         } else {
-            playerId = player1;
-            this.player = true;
+            return 1;
         }
-        return this.FourInARowView.setMove(y, x, playerId, board);
     }
 
+    aiActive(){
+        let player2Name = document.getElementById('player2').value;
+        return player2Name === "ai";
+    }
+
+    possibleMoves(board){
+        // for (let x = 0; x <= 6; x++) {
+        //
+        // }
+        let id =Math.floor(Math.random() * 41);
+        this.setMove(id, board)
+    }
+
+
+    minimax(board){
+        this.possibleMoves(board);
+
+    }
     checkForWin(board, playerId) {
+        //  0  1  2  3  4  5  6
+        // [ ][ ][ ][ ][ ][ ][ ] 0
+        // [ ][ ][ ][ ][ ][ ][ ] 1
+        // [ ][ ][ ][ ][ ][ ][ ] 2
+        // [ ][ ][ ][ ][ ][ ][ ] 3
+        // [x][x][x][x][ ][ ][ ] 4
+        // [ ][ ][ ][ ][ ][ ][ ] 5
         //horzontaal
         let inrow = 0;
         for (let y = 0; y <= 5; y++) {
             inrow = 0;
             for (let x = 0; x <= 6; x++) {
-                if (board[y][x] == playerId) {
+                if (board[y][x] === playerId) {
                     inrow++;
                 } else {
                     inrow = 0;
                 }
-                if (inrow == 4) {
-                    return this.FourInARowView.win(playerId);
+                if (inrow === 4) {
+                    return true;
                 }
             }
         }
         //verticaal
+        //  0  1  2  3  4  5  6
+        // [ ][ ][ ][ ][ ][ ][ ] 0
+        // [ ][ ][ ][ ][ ][ ][ ] 1
+        // [ ][ ][ ][x][ ][ ][ ] 2
+        // [ ][ ][ ][x][ ][ ][ ] 3
+        // [ ][ ][ ][x][ ][ ][ ] 4
+        // [ ][ ][ ][x][ ][ ][ ] 5
         for (let x = 0; x <= 6; x++) {
             inrow = 0;
             for (let y = 0; y <= 5; y++) {
-                if (board[y][x] == playerId) {
+                if (board[y][x] === playerId) {
                     inrow++;
                 } else {
                     inrow = 0;
                 }
-                if (inrow == 4) {
-                    return this.FourInARowView.win(playerId);
+                if (inrow === 4) {
+                    return true;
                 }
             }
         }
         //digonaal
         //links naar rechts
+        //  0  1  2  3  4  5  6
+        // [x][ ][ ][ ][ ][ ][ ] 0
+        // [ ][x][ ][ ][ ][ ][ ] 1
+        // [ ][ ][x][ ][ ][ ][ ] 2
+        // [ ][ ][ ][x][ ][ ][ ] 3
+        // [ ][ ][ ][ ][ ][ ][ ] 4
+        // [ ][ ][ ][ ][ ][ ][ ] 5
         for (let xx = 0; xx <= 3; xx++) {
-            let x = 0 + xx;
+            let x = xx;
+            inrow =0;
             for (let y = 0; y <= 5 && x <= 6; y++) {
-                if (board[y][x] == playerId) {
+                if (board[y][x] === playerId) {
                     inrow++;
                 } else {
                     inrow = 0;
                 }
-                if (inrow == 4) {
-                    return this.FourInARowView.win(playerId);
+                if (inrow === 4) {
+                    return true;
                 }
                 x++;
             }
         }
         for (let yy = 1; yy <= 2; yy++) {
             let x = 0;
-            for (let y = 0 + yy; y <= 5 && x <= 6; y++) {
-                if (board[y][x] == playerId) {
+            inrow =0;
+            for (let y =  yy; y <= 5 && x <= 6; y++) {
+                if (board[y][x] === playerId) {
                     inrow++;
                 } else {
                     inrow = 0;
                 }
-                if (inrow == 4) {
-                    return this.FourInARowView.win(playerId);
+                if (inrow === 4) {
+                    return true;
                 }
                 x++;
             }
         }
         //rechts naar links
+        //  0  1  2  3  4  5  6
+        // [ ][ ][ ][ ][ ][ ][x] 0
+        // [ ][ ][ ][ ][ ][x][ ] 1
+        // [ ][ ][ ][ ][x][ ][ ] 2
+        // [ ][ ][ ][x][ ][ ][ ] 3
+        // [ ][ ][ ][ ][ ][ ][ ] 4
+        // [ ][ ][ ][ ][ ][ ][ ] 5
         for (let xx = 6; xx >= 3; xx--) {
-            let x = 0 + xx;
+            let x = xx;
+            inrow =0;
             for (let y = 0; y <= 5 && x >= 0; y++) {
-                if (board[y][x] == playerId) {
+                if (board[y][x] === playerId) {
                     inrow++;
                 } else {
                     inrow = 0;
                 }
-                if (inrow == 4) {
-                    return this.FourInARowView.win(playerId);
+                if (inrow === 4) {
+                    return true;
                 }
                 x--;
 
@@ -160,29 +193,36 @@ export class FourInARow extends EventTarget {
         }
         for (let yy = 1; yy <= 2; yy++) {
             let x = 6;
-            for (let y = 0 + yy; y <= 5 && x <= 6; y++) {
+            inrow =0;
+            for (let y = + yy; y <= 5 && x <= 6; y++) {
 
-                if (board[y][x] == playerId) {
+                if (board[y][x] === playerId) {
                     inrow++;
                 } else {
                     inrow = 0;
                 }
-                if (inrow == 4) {
-                    return this.FourInARowView.win(playerId);
+                if (inrow === 4) {
+                    return true;
                 }
                 x--;
             }
         }
+        return false;
+    }
+    checkForTie(board){
         //tie
-        inrow = 0;
+        let inrow = 0;
         for (let x = 0; x <= 6; x++) {
             if (!board[0][x] == 0) {
                 inrow++
             }
-            if (inrow == 7) {
-                return this.FourInARowView.win("tie");
+            if (inrow === 7) {
+                return true;
             }
         }
-
+        return false;
     }
+
+
+
 }

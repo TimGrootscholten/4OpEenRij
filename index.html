@@ -3,17 +3,25 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>4 op een rij</title>
+    <title>Four on a row</title>
     <link rel="stylesheet" type="text/css" href="css/Stylesheet.css" />
 </head>
+
 <body>
+    <header>
+        <div id="gameOver" class="gameOver">
+            <h1>Game Over</h1>
+            <p id="gameOverText"></p>
+            <button id="rematch">rematch</button>
+        </div>
+    </header>
     <main>
         <div id="start">
-            <h1>4 op een rij</h1><br>
+            <h1>Four on a row</h1><br>
             <p>player 1</p>
-            <input id="player1" type="text" required>
+            <label for="player1"></label><input id="player1" type="text" required>
             <p>player 2</p>
-            <input id="player2" type="text" required><br>
+            <label for="player2"></label><input id="player2" type="text" required><br>
             <button id="startButton" type="submit">Start!</button>
         </div>
         <div id="grid-container">
@@ -30,9 +38,6 @@
             </asideRight>
         </div>
     </main>
-    <footer>
-        <p id="copyright">&copy; copyright 2020 Tim Grootscholten</p>
-    </footer>
     <script type="module" src="js/start.js"></script>
 </body>
 
