@@ -20,6 +20,7 @@ export class FourOnARowModel extends EventTarget{
     }
 
     acceptClick(id){
+        //maakt dan de id een x waarder
         let x;
         if (id <= 6) {
             x = id;
@@ -35,6 +36,7 @@ export class FourOnARowModel extends EventTarget{
             x = id - 35;
         }
         let y = 0;
+        //kijkt waar in de y de move is
         if (this.board[0][x] === 0) {
             let emty = true;
             while (emty) {
@@ -204,5 +206,11 @@ export class FourOnARowModel extends EventTarget{
             }
         }
         return false;
+    }
+
+    rematch(){
+        for (let i = 0; i < 42; i++) {
+            document.getElementById(i).remove();
+        }
     }
 }
