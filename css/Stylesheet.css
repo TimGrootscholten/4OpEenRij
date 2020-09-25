@@ -16,17 +16,23 @@ main {
 
 board {
     display: grid;
-    grid-template-columns: 125px 125px 125px 125px 125px 125px 125px;
+    grid-template-columns: 120px 120px 120px 120px 120px 120px 120px;
     margin: 100px auto;
     grid-column-gap: 0px;
+    background-color: #4370F1;
+    border-radius: 2%;
+    border: 2px solid;
+    
 }
 
 .board-item {
+    margin: 10px;
     background-color: white;
-    border: 1px solid;
-    height: 122px;
+    height: 96px;
     cursor: pointer;
     text-align: center;
+    border-radius: 50%;
+    border: 2px solid;
 }
 
 .img {
