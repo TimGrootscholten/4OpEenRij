@@ -61,9 +61,9 @@ export class FourOnARowView {
                 text.innerHTML = "TIED";
             } else {
                 if (info == 1) {
-                    text.innerHTML = "congratulations" + playernames[0] + " has won the game";
+                    text.innerHTML = "congratulations " + playernames[0] + " has won the game";
                 } else if (info == 2) {
-                    text.innerHTML = "congratulations" + playernames[1] + " has won the game";
+                    text.innerHTML = "congratulations " + playernames[1] + " has won the game";
                 }
             }
             this.controller.rematch();
