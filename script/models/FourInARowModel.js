@@ -1,6 +1,6 @@
 import {ModelChangedEvent} from "./ModelChangedEvent.js";
 
-export class FourOnARowModel extends EventTarget{
+export class FourInARowModel extends EventTarget{
 
     constructor(){
         super();

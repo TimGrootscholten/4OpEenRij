@@ -2,12 +2,12 @@ import {
     ModelChangedEvent
 } from "../models/ModelChangedEvent.js";
 import {
-    FourOnARowController
-} from "../controls/FourOnARowController.js"
+    FourInARowController
+} from "../controls/FourInARowController.js"
 
-export class FourOnARowView {
+export class FourInARowView {
     constructor() {
-        this.FourOnARowField = document.querySelector('#FourOnARowfield')
+        this.FourInARowField = document.querySelector('#FourInARowfield')
     }
 
     getPlayerName() {
@@ -23,7 +23,7 @@ export class FourOnARowView {
     }
 
     start() {
-        this.controller = new FourOnARowController();
+        this.controller = new FourInARowController();
         let playernames = this.getPlayerName();
         document.querySelector("#player1name").innerHTML = playernames[0];
         document.querySelector("#player2name").innerHTML = playernames[1];
@@ -53,7 +53,7 @@ export class FourOnARowView {
 
     async gameOver(info) {
         window.setTimeout(() => {
-            this.controller = new FourOnARowController();
+            this.controller = new FourInARowController();
             document.querySelector("#gameOver").style.display = 'block';
             let text = document.querySelector('#gameOverText');
             let playernames = this.getPlayerName();

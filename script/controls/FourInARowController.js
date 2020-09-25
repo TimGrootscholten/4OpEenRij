@@ -1,16 +1,16 @@
 import {
-    FourOnARowView
-} from "../views/FourOnARowView.js";
+    FourInARowView
+} from "../views/FourInARowView.js";
 import {
-    FourOnARowModel
-} from "../models/FourOnARowModel.js"
+    FourInARowModel
+} from "../models/FourInARowModel.js"
 
-export class FourOnARowController {
+export class FourInARowController {
 
     constructor() {
         this.lastMove = false
-        this.model = new FourOnARowModel();
-        this.view = new FourOnARowView();
+        this.model = new FourInARowModel();
+        this.view = new FourInARowView();
         this.player = 2;
         document.querySelector("#startButton").addEventListener('click', () => {
             this.view.start()

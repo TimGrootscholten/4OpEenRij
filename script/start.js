@@ -1,6 +1,6 @@
-import {FourOnARowController} from './controls/FourOnARowController.js'
+import {FourInARowController} from './controls/FourInARowController.js'
 
 window.addEventListener('load', (e)=>{
-   let c = new FourOnARowController();
+   let c = new FourInARowController();
 
 })
