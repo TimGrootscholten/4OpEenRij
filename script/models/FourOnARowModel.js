@@ -1,27 +1,26 @@
-import { FourInARowView } from "../view/FourInARowView.js"
-export class FourInARow {
-    constructor() {
-        this.FourInARowView = new FourInARowView();
-        document.getElementById("startButton").addEventListener('click', () => {this.start();});
-        this.player;
-        this.ai = false;
-    }
-    start() {
-        //haalt de player name op
-        let player1Name = document.getElementById('player1').value;
-        let player2Name = document.getElementById('player2').value;
-        if (player1Name === "") {
-            player1Name = "Player 1"
-        }
-        if (player2Name === "") {
-            player2Name = "Player 2"
-        }
+import {ModelChangedEvent} from "./ModelChangedEvent.js";
 
-        document.getElementById("start").style.display = 'none';
-        this.FourInARowView.showboard(player1Name, player2Name);
+export class FourOnARowModel extends EventTarget{
+
+    constructor(){
+        super();
+        this.board = [
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0]
+        ];
+        this.player = 2;
     }
-    setMove(id, board) {
-        //kijkt waar de move is
+
+    raiseModelChanged(){
+        this.dispatchEvent(new ModelChangedEvent(this.board));
+    }
+
+    acceptClick(id){
+        //maakt dan de id een x waarder
         let x;
         if (id <= 6) {
             x = id;
@@ -36,29 +35,31 @@ export class FourInARow {
         } else if (id <= 41) {
             x = id - 35;
         }
-        //kijkt waar in de rij de munt gezet moet worden
         let y = 0;
-        if (board[0][x] === 0) {
+        //kijkt waar in de y de move is
+        if (this.board[0][x] === 0) {
             let emty = true;
             while (emty) {
                 y++;
-                if (y === 5 && board[y][x] === 0) {
+                if (y === 5 && this.board[y][x] === 0) {
                     emty = false;
                 }
-                if (!board[y][x] == 0) {
+                if (!this.board[y][x] == 0) {
                     y--;
                     emty = false;
                 }
             }
             this.player = this.switchPlayer(this.player);
-            console.log(this.player);
-            this.FourInARowView.showMove(y, x, board, this.player);
+            this.board[y][x] = this.player;
+            this.raiseModelChanged();
+            id = y * 7 + x;
+           return [this.player, id]
         }
+       
     }
 
     switchPlayer(player) {
         // 1 player1, 2 player2
-        console.log(player);
         if (player === 1) {
             return 2;
         } else {
@@ -66,25 +67,9 @@ export class FourInARow {
         }
     }
 
-    aiActive(){
-        let player2Name = document.getElementById('player2').value;
-        return player2Name === "ai";
-    }
-
-    possibleMoves(board){
-        // for (let x = 0; x <= 6; x++) {
-        //
-        // }
-        let id =Math.floor(Math.random() * 41);
-        this.setMove(id, board)
-    }
-
-
-    minimax(board){
-        this.possibleMoves(board);
-
-    }
-    checkForWin(board, playerId) {
+    
+    checkForWin(playerId) {
+        let board = this.board;
         //  0  1  2  3  4  5  6
         // [ ][ ][ ][ ][ ][ ][ ] 0
         // [ ][ ][ ][ ][ ][ ][ ] 1
@@ -209,11 +194,11 @@ export class FourInARow {
         }
         return false;
     }
-    checkForTie(board){
+    checkForTie(){
         //tie
         let inrow = 0;
         for (let x = 0; x <= 6; x++) {
-            if (!board[0][x] == 0) {
+            if (!this.board[0][x] == 0) {
                 inrow++
             }
             if (inrow === 7) {
@@ -223,6 +208,9 @@ export class FourInARow {
         return false;
     }
 
-
-
+    rematch(){
+        for (let i = 0; i < 42; i++) {
+            document.getElementById(i).remove();
+        }
+    }
 }
