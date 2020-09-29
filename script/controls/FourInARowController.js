@@ -4,16 +4,22 @@ import {
 import {
     FourInARowModel
 } from "../models/FourInARowModel.js"
+import {
+    PlayerScore
+} from "../models/PlayerScore.js"
+
 
 export class FourInARowController {
 
     constructor() {
-        this.lastMove = false
+        this.lastMove = false;
         this.model = new FourInARowModel();
         this.view = new FourInARowView();
+        this.score = new PlayerScore();
         this.player = 2;
         document.querySelector("#startButton").addEventListener('click', () => {
-            this.view.start()
+            this.view.start();
+            this.score.start();
         });
     }
 
@@ -36,10 +42,15 @@ export class FourInARowController {
         }
     }
 
-    rematch() { //laat een niet speelveld in
+    rematch(info) { //laat een speelveld in
+        this.score = new PlayerScore();
         document.querySelector("#rematch").addEventListener('click', () => {
-            this.model.rematch();
+            this.score.rematch(info);
             this.view.start();
         });
+    }
+
+    drawWin(winingboard) { //winnende rij
+        this.view.drawWiningmove(winingboard);
     }
 }

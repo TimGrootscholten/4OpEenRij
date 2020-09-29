@@ -8,62 +8,74 @@
 </head>
 
 <body>
-
-    </div>
-    <div id="gameOver" class="gameOver">
-        <h1>Game Over</h1>
-        <p id="gameOverText"></p>
-        <button id="rematch">rematch</button>
-    </div>
     <main>
         <div id="rain">
-            <img alt="raining coins" src="img/geel_rondje_v2.png" class="rioncoins"
+            <img alt="raining coins" src="img/geel_rondje_v2.png" class="raincoins"
                 style="width: 200px; -webkit-animation-delay: 1s;animation-delay: 1s; -webkit-animation-duration: 8s;animation-duration: 5s; left:50%; margin-left: 750px;" />
-            <img alt="raining coins" src="img/geel_rondje_v2.png" class="rioncoins"
+            <img alt="raining coins" src="img/geel_rondje_v2.png" class="raincoins"
                 style="width: 100px; -webkit-animation-delay: 0s;animation-delay: 0s; -webkit-animation-duration: 4s;animation-duration: 4s; left:50%; margin-left: 650px;" />
-            <img alt="raining coins" src="img/rood_rondje_v2.png" class="rioncoins"
+            <img alt="raining coins" src="img/rood_rondje_v2.png" class="raincoins"
                 style="width: 134px; -webkit-animation-delay: 0s;animation-delay: 2s; -webkit-animation-duration: 0s;animation-duration: 3s; left:50%; margin-left: 500px;" />
-            <img alt="raining coins" src="img/geel_rondje_v2.png" class="rioncoins"
+            <img alt="raining coins" src="img/geel_rondje_v2.png" class="raincoins"
                 style="width: 146px; -webkit-animation-delay: 3s;animation-delay: 3s; -webkit-animation-duration: 0s;animation-duration: 4s; left:50%; margin-left: 340px;" />
-            <img alt="raining coins" src="img/rood_rondje_v2.png" class="rioncoins"
+            <img alt="raining coins" src="img/rood_rondje_v2.png" class="raincoins"
                 style="width: 100px; -webkit-animation-delay: 1s;animation-delay: 1s; -webkit-animation-duration: 0s;animation-duration: 5s; left:50%; margin-left: 230px;" />
-            <img alt="raining coins" src="img/rood_rondje_v2.png" class="rioncoins"
+            <img alt="raining coins" src="img/rood_rondje_v2.png" class="raincoins"
                 style="width: 167px; -webkit-animation-delay: 2s;animation-delay: 2s; -webkit-animation-duration: 0s;animation-duration: 4s; left:50%; margin-left:  0px;" />
-            <img alt="raining coins" src="img/geel_rondje_v2.png" class="rioncoins"
+            <img alt="raining coins" src="img/geel_rondje_v2.png" class="raincoins"
                 style="width: 176px; -webkit-animation-delay: 3s;animation-delay: 3s; -webkit-animation-duration: 0s;animation-duration: 5s; left:50%; margin-left: -125px;" />
-            <img alt="raining coins" src="img/rood_rondje_v2.png" class="rioncoins"
+            <img alt="raining coins" src="img/rood_rondje_v2.png" class="raincoins"
                 style="width: 120px; -webkit-animation-delay: 0s;animation-delay: 0s; -webkit-animation-duration: 0s;animation-duration: 4s; left:50%; margin-left: -345px;" />
-            <img alt="raining coins" src="img/geel_rondje_v2.png" class="rioncoins"
+            <img alt="raining coins" src="img/geel_rondje_v2.png" class="raincoins"
                 style="width: 135px; -webkit-animation-delay: 1s;animation-delay: 1s; -webkit-animation-duration: 0s;animation-duration: 3s; left:50%; margin-left: -456px;" />
-            <img alt="raining coins" src="img/rood_rondje_v2.png" class="rioncoins"
+            <img alt="raining coins" src="img/rood_rondje_v2.png" class="raincoins"
                 style="width: 200px; -webkit-animation-delay: 3s;animation-delay: 3s; -webkit-animation-duration: 0s;animation-duration: 4s; left:50%; margin-left: -634px;" />
-            <img alt="raining coins" src="img/rood_rondje_v2.png" class="rioncoins"
+            <img alt="raining coins" src="img/rood_rondje_v2.png" class="raincoins"
                 style="width: 135px; -webkit-animation-delay: 2s;animation-delay: 2s; -webkit-animation-duration: 0s;animation-duration: 5s; left:50%; margin-left: -834px;" />
-            <img alt="raining coins" src="img/geel_rondje_v2.png" class="rioncoins"
+            <img alt="raining coins" src="img/geel_rondje_v2.png" class="raincoins"
                 style="width: 123px; -webkit-animation-delay: 1s;animation-delay: 1s; -webkit-animation-duration: 0s;animation-duration: 3s; left:50%; margin-left: -950px;" />
         </div>
         <div id="start">
-            <h1>Four on a row</h1><br>
-            <p>player 1</p>
-            <label for="player1"></label><input id="player1" type="text" required>
-            <p>player 2</p>
-            <label for="player2"></label><input id="player2" type="text" required><br>
+            <h1>Four on a row</h1><br><br><br>
+            <form>
+                <div class="group">
+                    <input type="text" maxlength="13" id="player1" required>
+                    <span class="highlight"></span>
+                    <span class="bar" id="bar1"></span>
+                    <label>Player 1</label>
+                </div>
+
+                <div class="group">
+                    <input type="text" maxlength="13" id="player2" required>
+                    <span class="highlight"></span>
+                    <span class="bar" id="bar2"></span>
+                    <label>Player 2</label>
+                </div>
+            </form>
             <button id="startButton" type="submit">Start!</button>
         </div>
         <div id="grid-container">
-            <asideLeft>
-                <player1>
-                    <img class="img" src="img/geel_rondje_v2.png" alt="geele coin" width="150" height="150"><br>
-                    <p id="player1name"></p>
-                </player1>
-            </asideLeft>
             <board></board>
-            <asideRight>
-                <player2>
-                    <img class="img" src="img/rood_rondje_v2.png" alt="roode coin" width="150" height="150"><br>
-                    <p id="player2name"></p>
-                </player2>
-            </asideRight>
+            <aside>
+                <div class="score">
+                    <div class="item">
+                        <img class="img" src="img/geel_rondje_v2.png" alt="geele coin" width="75" height="75">
+                        <p id="player1name"></p>
+                        <p id="player1Score">0</p> <br> <br>
+                    </div>
+                    <div class="item">
+                        <img class="img" src="img/rood_rondje_v2.png" alt="roode coin" width="75" height="75">
+                        <p id="player2name"></p>
+                        <p id="player2Score">0</p>
+                    </div>
+                </div>
+
+                <div id="gameOver" class="gameOver">
+                    <h1>Game Over</h1><br>
+                    <p id="gameOverText"></p><br>
+                    <button id="rematch">rematch</button>
+                </div>
+            </aside>
         </div>
     </main>
     <script type="module" src="./script/start.js"></script>

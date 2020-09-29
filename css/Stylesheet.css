@@ -3,16 +3,18 @@
     box-sizing: 0px;
     margin: 0px;
     font-family: Arial, sans-serif;
+
 }
 
 body {
     background-color: lightgray;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
 }
 
-main {
-    min-height: 100vh;
-}
+
+
 
 board {
     display: grid;
@@ -22,6 +24,7 @@ board {
     background-color: #4370F1;
     border-radius: 2%;
     border: 2px solid;
+
 
 }
 
@@ -41,12 +44,10 @@ board {
 }
 
 #start {
-    position: fixed;
-    top: 17%;
-    left: 40%;
+    margin: 20px auto;
     text-align: center;
     background-color: white;
-    width: 300px; 
+    width: 300px;
     padding: 30px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.11), 0 2px 2px rgba(0, 0, 0, 0.11), 0 4px 4px rgba(0, 0, 0, 0.11), 0 8px 8px rgba(0, 0, 0, 0.11), 0 16px 16px rgba(0, 0, 0, 0.11), 0 32px 32px rgba(0, 0, 0, 0.11);
 
@@ -83,59 +84,77 @@ footer {
     padding-bottom: 30px;
 }
 
-input {
-    border-radius: 5px;
-    font-size: 15px;
+
+@media screen and (min-width:1230px) {
+    #grid-container {
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-template-rows: 1fr;
+        visibility: hidden;
+    }
 }
 
-#player1 {
-    background-color: yellow;
+/* 1400 px max  */
+@media screen and (max-width:1230px) {
+    #grid-container {
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: 1fr;
+        visibility: hidden;
+
+    }
+
+    aside {
+        margin: auto;
+    }
 }
 
-#player2 {
-    background-color: red;
+aside {
+    margin-right: auto;
 }
 
+.score {
+    border-radius: 10px;
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* align-items: baseline; */
+    background-color: white;
+    padding: 40px;
+    height: 225px;
+    margin-top: 100px;
+    min-width: 300px;
+    font-size: 30px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.11), 0 2px 2px rgba(0, 0, 0, 0.11), 0 4px 4px rgba(0, 0, 0, 0.11), 0 8px 8px rgba(0, 0, 0, 0.11), 0 16px 16px rgba(0, 0, 0, 0.11), 0 32px 32px rgba(0, 0, 0, 0.11);
 
-#grid-container {
-    display: grid;
-    grid-template-columns: 15% auto 15%;
-    grid-template-rows: 1fr;
-    visibility: hidden;
 }
 
-asideRight {
-    margin: auto auto;
+.item {
+    display: flex;
+    line-height: 75px;
     text-align: center;
 }
 
-asideLeft {
-    text-align: center;
-    margin: auto auto;
-}
 
 .gameOver {
     background-color: white;
+    border-radius: 10px;
     padding: 20px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.11), 0 2px 2px rgba(0, 0, 0, 0.11), 0 4px 4px rgba(0, 0, 0, 0.11), 0 8px 8px rgba(0, 0, 0, 0.11), 0 16px 16px rgba(0, 0, 0, 0.11), 0 32px 32px rgba(0, 0, 0, 0.11);
     text-align: center;
-    margin: 20px auto;
+    margin: 90px auto;
     width: 300px;
     padding: 30px;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    font-size: 30px;
     display: none;
 }
 
 
 .raincoinsContainer {
-    overflow: hidden;
     position: relative;
 }
 
-.rioncoins {
+.raincoins {
+    z-index: -1;
     position: absolute;
     top: -200px;
     opacity: .5;
@@ -152,6 +171,7 @@ asideLeft {
         position: absolute;
         top: -200px;
     }
+
     to {
         position: absolute;
         top: 1080px;
@@ -163,6 +183,7 @@ asideLeft {
         position: absolute;
         top: -200px;
     }
+
     to {
         position: absolute;
         top: 633px;
@@ -174,8 +195,142 @@ asideLeft {
         position: absolute;
         top: -200px;
     }
+
     to {
         position: absolute;
         top: 633px;
+    }
+}
+
+.group {
+    position: relative;
+    margin-bottom: 45px;
+}
+
+input {
+    font-size: 18px;
+    padding: 10px 10px 10px 5px;
+    display: block;
+    width: 285px;
+    border: none;
+    border-bottom: 1px solid #757575;
+}
+
+input:focus {
+    outline: none;
+}
+
+/* LABEL ======================================= */
+label {
+    color: #999;
+    font-size: 18px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 5px;
+    top: 10px;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+}
+
+/* active state */
+input:focus~label,
+input:valid~label {
+    top: -20px;
+    font-size: 14px;
+    color: #5264AE;
+}
+
+input:focus~label,
+input:valid~label {
+    top: -20px;
+    font-size: 14px;
+    color: #5264AE;
+}
+
+/* BOTTOM BARS ================================= */
+.bar {
+    position: relative;
+    display: block;
+    width: 300px;
+}
+
+.bar:before,
+.bar:after {
+    content: '';
+    height: 2px;
+    width: 0;
+    bottom: 1px;
+    position: absolute;
+    background: #5264AE;
+    transition: 0.5s ease all;
+    -moz-transition: 0.5s ease all;
+    -webkit-transition: 0.5s ease all;
+}
+
+.bar:before {
+    left: 50%;
+}
+
+.bar:after {
+    right: 50%;
+}
+
+/* active state */
+input:focus~.bar:before,
+input:focus~.bar:after {
+    width: 50%;
+}
+
+/* HIGHLIGHTER ================================== */
+.highlight {
+    position: absolute;
+    height: 60%;
+    width: 100px;
+    top: 25%;
+    left: 0;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+/* active state */
+input:focus~.highlight {
+    -webkit-animation: inputHighlighter 0.3s ease;
+    -moz-animation: inputHighlighter 0.3s ease;
+    animation: inputHighlighter 0.3s ease;
+}
+
+/* ANIMATIONS ================ */
+@-webkit-keyframes inputHighlighter {
+    from {
+        background: #5264AE;
+    }
+
+    to {
+        width: 0;
+        background: transparent;
+    }
+}
+
+@-moz-keyframes inputHighlighter {
+    from {
+        background: #5264AE;
+    }
+
+    to {
+        width: 0;
+        background: transparent;
+    }
+}
+
+@keyframes inputHighlighter {
+    from {
+        background: #5264AE;
+    }
+
+    to {
+        width: 0;
+        background: transparent;
     }
 }
