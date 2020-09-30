@@ -4,10 +4,6 @@ import {
 import {
     FourInARowModel
 } from "../models/FourInARowModel.js"
-import {
-    PlayerScore
-} from "../models/PlayerScore.js"
-
 
 export class FourInARowController {
 
@@ -15,11 +11,8 @@ export class FourInARowController {
         this.lastMove = false;
         this.model = new FourInARowModel();
         this.view = new FourInARowView();
-        this.score = new PlayerScore();
-        this.player = 2;
         document.querySelector("#startButton").addEventListener('click', () => {
             this.view.start();
-            this.score.start();
         });
     }
 
@@ -42,11 +35,13 @@ export class FourInARowController {
         }
     }
 
-    rematch(info) { //laat een speelveld in
-        this.score = new PlayerScore();
-        document.querySelector("#rematch").addEventListener('click', () => {
-            this.score.rematch(info);
-            this.view.start();
+    rematchController(WinningInfo) { //laat een speelveld in
+        console.log("controller eerst");
+        document.getElementById("rematch").addEventListener('click', () => {
+            console.log("click", WinningInfo);
+            this.model.rematchModel(WinningInfo);
+            console.log("click", WinningInfo);
+            this.view.start(); 
         });
     }
 

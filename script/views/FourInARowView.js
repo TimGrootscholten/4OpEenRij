@@ -44,29 +44,28 @@ export class FourInARowView {
         }
     }
 
-    async gameOver(info) {
+    async gameOver(WinningInfo) {
         window.setTimeout(() => {
             this.controller = new FourInARowController();
             document.getElementById("gameOver").style.display = 'block';
             let text = document.querySelector('#gameOverText');
             let playernames = this.getPlayerName();
-            if (info == "tie") {
+            if (WinningInfo == "tie") {
                 text.innerHTML = "TIED";
             } else {
-                if (info == 1) {
+                if (WinningInfo == 1) {
                     text.innerHTML = "Congratulations " + playernames[0] + ", you won the game.";
-                } else if (info == 2) {
+                } else if (WinningInfo == 2) {
                     text.innerHTML = "Congratulations " + playernames[1] + ", you won the game.";
                 }
             }
-            this.controller.rematch(info);
+            this.controller.rematchController(WinningInfo);
         }, 1);
     }
 
     drawWiningmove(winingBoard) {
         for (let y = 0; y <= 5; y++) {
             for (let x = 0; x <= 6; x++) {
-                console.log(winingBoard[y][x]);
                 if (winingBoard[y][x] === 0) {
                     let id = y * 7 + x;
                     document.getElementById(id).style.opacity = '0.6';

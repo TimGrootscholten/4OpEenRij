@@ -14,7 +14,6 @@ export class FourInARowModel {
             [0, 0, 0, 0, 0, 0, 0]
         ];
         this.player = 2;
-        this.playersScore = [];
     }
     acceptClick(id) {
         //maakt dan de id een x waarder
@@ -59,6 +58,20 @@ export class FourInARowModel {
             return 2;
         } else {
             return 1;
+        }
+    }
+
+    rematchModel(WinningInfo){
+        for (let i = 0; i < 42; i++) {
+            document.getElementById(i).remove();
+        }
+        let scorePlayer1 = parseInt(document.querySelector("#player1Score").innerHTML);
+        let scorePlayer2 = parseInt(document.querySelector("#player2Score").innerHTML);
+        console.log(scorePlayer1, scorePlayer2, WinningInfo);
+        if(WinningInfo === 1){
+            document.querySelector("#player1Score").innerHTML = scorePlayer1 + 1;
+        }else if(WinningInfo ===2){
+            document.querySelector("#player2Score").innerHTML = scorePlayer2 + 1;
         }
     }
 
