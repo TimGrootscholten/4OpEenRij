@@ -1,76 +1,117 @@
 import {
-    FourInARowController
-} from "../controls/FourInARowController.js"
+    FourInARowEvent
+} from "../models/FourInARowEvent.js";
 
 export class FourInARowView {
+    constructor(data) {
+        this.data = data;
+        this.data.addEventListener(FourInARowEvent.CHANGED, () => {
+            this.Changed(this.data)
+        });
 
-    getPlayerName() {
-        let player1Name = document.getElementById('player1').value;
-        let player2Name = document.getElementById('player2').value;
-        if (player1Name === "") {
-            player1Name = "Player 1"
-        }
-        if (player2Name === "") {
-            player2Name = "Player 2"
-        }
-        return [player1Name, player2Name]
+
     }
 
-    start() { //zet de player name neer en veranderd de style
-        this.controller = new FourInARowController();
-        let playernames = this.getPlayerName();
-        document.querySelector("#player1name").innerHTML = playernames[0] + ": ";
-        document.querySelector("#player2name").innerHTML = playernames[1] + ": ";
-        document.getElementById("gameOver").style.display = 'none';
-        document.getElementById("grid-container").style.visibility = 'visible';
-        document.getElementById("start").style.display = 'none';
-        for (let i = 0; i < 42; i++) {
-            document.querySelector("board").insertAdjacentHTML('beforeend', `<div id='${i}' class='board-item'></div>`);
-            let box = document.getElementById(i);
-            box.addEventListener('click', () => {
-                this.controller.onBoxClicked(i);
+    bindStartButton() {
+        this.form = document.querySelector("#playerdata");
+        this.form.addEventListener("submit", (event) => {
+            event.preventDefault();
+            this.data.data.player1Name = document.querySelector("#player1").value;
+            this.data.data.player2Name = document.querySelector("#player2").value;
+            document.querySelector("#player1name").innerHTML =
+                this.data.data.player1Name + ": ";
+            document.querySelector("#player2name").innerHTML =
+                this.data.data.player2Name + ": ";
+            document.getElementById("grid-container").style.visibility = "visible";
+            document.getElementById("start").style.display = "none";
+        });
+    }
+
+    drwawGame(handler) {
+        document.getElementById("gameOver").style.display = "none";
+        if (this.data.player1Score === undefined) {} else {
+            document.querySelector("#player1Score").innerHTML = this.data.player1Score;
+            document.querySelector("#player2Score").innerHTML = this.data.player2Score;
+        }
+        for (let id = 0; id < 42; id++) {
+            document.querySelector("board").insertAdjacentHTML("beforeend", `<div id='${id}' class='board-item'></div>`);
+            let box = document.getElementById(id);
+            box.addEventListener("click", () => {
+                handler({
+                    id
+                });
             });
         }
     }
 
-    drawMove(moveValues) {
-        let id = moveValues[1];
-        let currentPlayer = moveValues[0];
-
-        if (currentPlayer === 1) {
-            document.getElementById(id).style.backgroundColor = 'yellow';
-        } else {
-            document.getElementById(id).style.backgroundColor = 'red';
+    Changed(event) {
+        this.data = event.data
+        if (event.data == null) {
+            this.data = event
         }
+        this.drawMove();
+        this.gameOver();
     }
 
-    async gameOver(WinningInfo) {
-        window.setTimeout(() => {
-            this.controller = new FourInARowController();
+    drawMove() {
+        let box = document.getElementById(this.data.moveId);
+        // ?let img = document.createElement('img');
+
+        if (this.data.currentPlayer == 1) {
+            box.style.backgroundColor = "yellow";
+            //  ?  img.src =
+            //   ? './img/geel_rondje_v2.png';
+        } else if (this.data.currentPlayer == 2) {
+            box.style.backgroundColor = "red";
+            // ?:img.src =
+            //? './img/rood_rondje_v2.png';
+        }
+        // ?document.getElementById(this.data.moveId).appendChild(img);
+    }
+
+    gameOver() {
+        if (this.data.currentPlayer === this.data.gameStatus || this.data.gameStatus === "Tie") {
             document.getElementById("gameOver").style.display = 'block';
             let text = document.querySelector('#gameOverText');
-            let playernames = this.getPlayerName();
-            if (WinningInfo == "tie") {
+            if (this.data.gameStatus == "tie") {
                 text.innerHTML = "TIED";
             } else {
-                if (WinningInfo == 1) {
-                    text.innerHTML = "Congratulations " + playernames[0] + ", you won the game.";
-                } else if (WinningInfo == 2) {
-                    text.innerHTML = "Congratulations " + playernames[1] + ", you won the game.";
+                if (this.data.gameStatus == 1) {
+                    text.innerHTML = "Congratulations " + this.data.player1Name + ", you won the game.";
+                    this.data.player1Score++;
+                } else if (this.data.gameStatus == 2) {
+                    text.innerHTML = "Congratulations " + this.data.player1Name + ", you won the game.";
+                    this.data.player2Score++;
                 }
-            }
-            this.controller.rematchController(WinningInfo);
-        }, 1);
-    }
-
-    drawWiningmove(winingBoard) {
-        for (let y = 0; y <= 5; y++) {
-            for (let x = 0; x <= 6; x++) {
-                if (winingBoard[y][x] === 0) {
-                    let id = y * 7 + x;
-                    document.getElementById(id).style.opacity = '0.6';
+                for (let y = 0; y <= 5; y++) {
+                    for (let x = 0; x <= 6; x++) {
+                        let match = false;
+                        let i = 1;
+                        let id = y * 7 + x;
+                        while (!match) {
+                            if (this.data.winingRow[i][0] == y && this.data.winingRow[i][1] == x) {
+                                document.getElementById(id).style.opacity = '1';
+                                match = true;
+                            } else {
+                                document.getElementById(id).style.opacity = '0.6';
+                            }
+                            if (i === 4) {
+                                match = true;
+                            }
+                            i++;
+                        }
+                    }
                 }
             }
         }
+    }
+
+    rematchButton(handler) {
+        document.getElementById("rematch").addEventListener("click", () => {
+            for (let i = 0; i < 42; i++) {
+                document.getElementById(i).remove();
+            }
+            handler();
+        })
     }
 }

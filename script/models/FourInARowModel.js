@@ -1,11 +1,12 @@
 import {
-    FourInARowController
-} from "../controls/FourInARowController.js";
-export class FourInARowModel {
+    FourInARowEvent
+} from "../models/FourInARowEvent.js";
 
+export class FourInARowModel extends EventTarget {
     constructor() {
-
-        this.board = [
+        super();
+        this.data = [];
+        this.data.board = [
             [0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0],
@@ -13,10 +14,21 @@ export class FourInARowModel {
             [0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0]
         ];
-        this.player = 2;
+        this.data.currentPlayer = 2;
+        this.data.gameStatus = "playing";
+        this.data.player1Score =0;
+        this.data.player2Score =0;
+        this.data.winingRow = [
+            [],
+            [],
+            [],
+            []
+        ];
+
     }
-    acceptClick(id) {
-        //maakt dan de id een x waarder
+
+    move(id1) {
+        let id = id1.id;
         let x;
         if (id <= 6) {
             x = id;
@@ -32,25 +44,26 @@ export class FourInARowModel {
             x = id - 35;
         }
         let y = 0;
-        //kijkt waar in de y de move is
-        if (this.board[0][x] === 0) {
-            let emty = true;
-            while (emty) {
+        if (this.data.board[0][x] === 0) {
+            let boxEmty = true;
+            while (boxEmty) {
                 y++;
-                if (y === 5 && this.board[y][x] === 0) {
-                    emty = false;
+                if (y === 5 && this.data.board[y][x] === 0) {
+                    boxEmty = false;
                 }
-                if (!this.board[y][x] == 0) {
+                if (!this.data.board[y][x] == 0) {
                     y--;
-                    emty = false;
+                    boxEmty = false;
                 }
             }
-            this.player = this.switchPlayer(this.player);
-            this.board[y][x] = this.player;
+            this.data.currentPlayer = this.switchPlayer(this.data.currentPlayer);
+            this.data.board[y][x] = this.data.currentPlayer;
             id = y * 7 + x;
-            return [this.player, id]
+            this.data.moveId = id;
+            this.checkForWin();
+            this.checkForTie();
+            this._commit();
         }
-
     }
 
     switchPlayer(player) {
@@ -61,42 +74,22 @@ export class FourInARowModel {
         }
     }
 
-    rematchModel(WinningInfo){
-        for (let i = 0; i < 42; i++) {
-            document.getElementById(i).remove();
-        }
-        let scorePlayer1 = parseInt(document.querySelector("#player1Score").innerHTML);
-        let scorePlayer2 = parseInt(document.querySelector("#player2Score").innerHTML);
-        console.log(scorePlayer1, scorePlayer2, WinningInfo);
-        if(WinningInfo === 1){
-            document.querySelector("#player1Score").innerHTML = scorePlayer1 + 1;
-        }else if(WinningInfo ===2){
-            document.querySelector("#player2Score").innerHTML = scorePlayer2 + 1;
-        }
+    restart(){
+        this.data.board = [
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0],
+        ];
+        this.data.currentPlayer = 2;
+        this.data.gameStatus = "playing";
     }
 
-
-    winingRow(y, x, inrow) {
-        this.controller = new FourInARowController();
-        if (y == undefined) {
-            this.winingboard = [
-                [0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0]
-            ];
-        } else {
-            this.winingboard[y][x] = 3;
-        }
-        if (inrow === 4) {
-            this.controller.drawWin(this.winingboard);
-        }
-    }
-
-    checkForWin(playerId) {
-        let board = this.board;
+    checkForWin() {
+        let playerId = this.data.currentPlayer;
+        let board = this.data.board;
         //  0  1  2  3  4  5  6
         // [ ][ ][ ][ ][ ][ ][ ] 0
         // [ ][ ][ ][ ][ ][ ][ ] 1
@@ -110,13 +103,13 @@ export class FourInARowModel {
             for (let x = 0; x <= 6; x++) {
                 if (board[y][x] === playerId) {
                     inrow++;
-                    this.winingRow(y, x, inrow);
+                    this.data.winingRow[inrow] = [y , x];
                 } else {
                     inrow = 0;
-                    this.winingRow();
                 }
                 if (inrow === 4) {
-                    return true;
+                    this.data.gameStatus = playerId;
+                    return;
                 }
             }
         }
@@ -132,13 +125,13 @@ export class FourInARowModel {
             for (let y = 0; y <= 5; y++) {
                 if (board[y][x] === playerId) {
                     inrow++;
-                    this.winingRow(y, x, inrow);
+                    this.data.winingRow[inrow] = [y , x];
                 } else {
                     inrow = 0;
-                    this.winingRow();
                 }
                 if (inrow === 4) {
-                    return true;
+                    this.data.gameStatus = playerId;
+                    return;
                 }
             }
         }
@@ -155,13 +148,13 @@ export class FourInARowModel {
             for (let y = 0; y <= 5 && x <= 6; y++) {
                 if (board[y][x] === playerId) {
                     inrow++;
-                    this.winingRow(y, x, inrow);
+                    this.data.winingRow[inrow] = [y , x];
                 } else {
                     inrow = 0;
-                    this.winingRow();
                 }
                 if (inrow === 4) {
-                    return true;
+                    this.data.gameStatus = playerId;
+                    return;
                 }
                 x++;
             }
@@ -172,13 +165,13 @@ export class FourInARowModel {
             for (let y = yy; y <= 5 && x <= 6; y++) {
                 if (board[y][x] === playerId) {
                     inrow++;
-                    this.winingRow(y, x, inrow);
+                    this.data.winingRow[inrow] = [y , x];
                 } else {
                     inrow = 0;
-                    this.winingRow();
                 }
                 if (inrow === 4) {
-                    return true;
+                    this.data.gameStatus = playerId;
+                    return;
                 }
                 x++;
             }
@@ -196,32 +189,30 @@ export class FourInARowModel {
             for (let y = 0; y <= 5 && x >= 0; y++) {
                 if (board[y][x] === playerId) {
                     inrow++;
-                    this.winingRow(y, x, inrow);
+                    this.data.winingRow[inrow] = [y , x];
                 } else {
                     inrow = 0;
-                    this.winingRow();
                 }
                 if (inrow === 4) {
-                    return true;
+                    this.data.gameStatus = playerId;
+                    return;
                 }
                 x--;
-
             }
         }
         for (let yy = 1; yy <= 2; yy++) {
             let x = 6;
             inrow = 0;
             for (let y = +yy; y <= 5 && x <= 6; y++) {
-
                 if (board[y][x] === playerId) {
                     inrow++;
-                    this.winingRow(y, x, inrow);
+                    this.data.winingRow[inrow] = [y , x];
                 } else {
                     inrow = 0;
-                    this.winingRow();
                 }
                 if (inrow === 4) {
-                    return true;
+                    this.data.gameStatus = playerId;
+                    return;
                 }
                 x--;
             }
@@ -231,15 +222,18 @@ export class FourInARowModel {
     checkForTie() {
         let inrow = 0;
         for (let x = 0; x <= 6; x++) {
-            if (!this.board[0][x] == 0) {
-                inrow++
+            if (!this.data.board[0][x] == 0) {
+                inrow++;
             }
             if (inrow === 7) {
-                return true;
+                this.data.gameStatus = "Tie";
+                return;
             }
         }
         return false;
     }
 
-
+    _commit() {
+        this.dispatchEvent(new FourInARowEvent(this.data));
+    }
 }

@@ -37,22 +37,21 @@
         </div>
         <div id="start">
             <h1>Four on a row</h1><br><br><br>
-            <form>
+            <form id="playerdata">
                 <div class="group">
                     <input type="text" maxlength="13" id="player1" required>
                     <span class="highlight"></span>
                     <span class="bar" id="bar1"></span>
                     <label>Player 1</label>
                 </div>
-
                 <div class="group">
                     <input type="text" maxlength="13" id="player2" required>
                     <span class="highlight"></span>
                     <span class="bar" id="bar2"></span>
                     <label>Player 2</label>
                 </div>
+                <input id="startButton" type="submit" value="Start">
             </form>
-            <button id="startButton" type="submit">Start!</button>
         </div>
         <div id="grid-container">
             <board></board>
@@ -74,6 +73,7 @@
                     <h1>Game Over</h1><br>
                     <p id="gameOverText"></p><br>
                     <button id="rematch">rematch</button>
+                    <button id="homeScreen" onclick=" location.reload()">Home Screen</button>
                 </div>
             </aside>
         </div>
