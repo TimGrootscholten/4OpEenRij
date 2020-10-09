@@ -6,7 +6,8 @@ export class FourInARowView {
     constructor(data) {
         this.data = data;
         this.data.addEventListener(FourInARowEvent.CHANGED, () => {
-            this.Changed(this.data)
+            this.Changed(this.data);
+
         });
 
 
@@ -24,6 +25,9 @@ export class FourInARowView {
                 this.data.data.player2Name + ": ";
             document.getElementById("grid-container").style.visibility = "visible";
             document.getElementById("start").style.display = "none";
+            if (this.data.data.player2Name == "ai") {
+                this.data.data.ai = true;
+            }
         });
     }
 
@@ -40,33 +44,34 @@ export class FourInARowView {
                 handler({
                     id
                 });
+
             });
         }
     }
 
-    Changed(event) {
-        this.data = event.data
-        if (event.data == null) {
-            this.data = event
+    Changed(data) {
+        this.data = data.data
+        if (data.data == null) {
+            this.data = data
         }
-        this.drawMove();
         this.gameOver();
+        this.drawMove();
+
     }
 
     drawMove() {
-        let box = document.getElementById(this.data.moveId);
-        // ?let img = document.createElement('img');
+        for (let y = 0; y <= 5; y++) {
+            for (let x = 0; x <= 6; x++) {
+                let box = document.getElementById(y * 7 + x);
+                if (this.data.board[y][x] == 1) {
+                    box.style.backgroundColor = "yellow";
 
-        if (this.data.currentPlayer == 1) {
-            box.style.backgroundColor = "yellow";
-            //  ?  img.src =
-            //   ? './img/geel_rondje_v2.png';
-        } else if (this.data.currentPlayer == 2) {
-            box.style.backgroundColor = "red";
-            // ?:img.src =
-            //? './img/rood_rondje_v2.png';
+                } else if (this.data.board[y][x] == 2) {
+                    box.style.backgroundColor = "red";
+
+                }
+            }
         }
-        // ?document.getElementById(this.data.moveId).appendChild(img);
     }
 
     gameOver() {
