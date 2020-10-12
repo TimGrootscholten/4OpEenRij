@@ -5,11 +5,7 @@ import {
 export class FourInARowView {
     constructor(data) {
         this.data = data;
-        this.data.addEventListener(FourInARowEvent.CHANGED, () => {
-            this.Changed(this.data);
-
-        });
-
+        this.data.addEventListener(FourInARowEvent.CHANGED, this.Changed);
 
     }
 
@@ -44,15 +40,12 @@ export class FourInARowView {
         }
     }
 
-    Changed(data) { //de event triggert changed en die stuurt de data door
-        this.data = data.data
-        if (data.data == null) {
-            this.data = data
-        }
+    Changed = event => {
+        this.data = event.currentTarget.data
         this.gameOver();
         this.drawMove();
 
-    }
+    };
 
     drawMove() { // tekent een move
         for (let y = 0; y <= 5; y++) {
