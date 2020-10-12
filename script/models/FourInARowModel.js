@@ -24,16 +24,9 @@ export class FourInARowModel extends EventTarget {
       [],
       []
     ];
-
-    this.scores = {
-      2: 1,
-      1: -1,
-      Tie: 0,
-    };
-    this.calculations;
   }
 
-  move(id1) {
+  move(id1) {// maakt van een id de x en y waarde
     if (this.data.gameStatus == "playing") {
 
       let id = id1.id;
@@ -52,7 +45,7 @@ export class FourInARowModel extends EventTarget {
         x = id - 35;
       }
       let y = 0;
-      if (this.data.board[0][x] === 0) {
+      if (this.data.board[0][x] === 0) {//kijkt waar in de row de eerst volgende leeg vakje is
         let boxEmty = true;
         while (boxEmty) {
           y++;
@@ -68,13 +61,6 @@ export class FourInARowModel extends EventTarget {
         this.checkForWin();
         this._commit();
         this.data.currentPlayer = this.switchPlayer(this.data.currentPlayer);
-        this.calculations = 0;
-        if (this.data.ai) {
-          this.bestMove();
-          this.checkForWin();
-          this._commit();
-          this.data.currentPlayer = this.switchPlayer(this.data.currentPlayer);
-        }
       }
     }
   }
@@ -87,7 +73,7 @@ export class FourInARowModel extends EventTarget {
     }
   }
 
-  restart() {
+  restart() {//reset de values 
     this.data.board = [
       [0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0],
@@ -245,142 +231,7 @@ export class FourInARowModel extends EventTarget {
     }
     return null;
   }
-
-  /*
-    !MiniMax
-    */
-
-  bestMove() {
-    let bestScore = -Infinity;
-    let move;
-    for (let x = 0; x <= 6; x++) {
-      if (this.data.board[0][x] === 0) {
-        let boxEmty = true;
-        let y = 0;
-        while (boxEmty) {
-          y++;
-          if (y === 5 && this.data.board[y][x] === 0) {
-            boxEmty = false;
-          }
-          if (!this.data.board[y][x] == 0) {
-            y--;
-            boxEmty = false;
-          }
-        }
-        this.data.board[y][x] = 2;
-        let score = this.minimax(this.data.board, 0, false);
-        if (score == 1) {
-          // console.log(score, y, x, "ai");
-        }
-        this.data.board[y][x] = 0;
-        console.log(x, bestScore, "x bestscore")
-
-        if (score > bestScore) {
-          bestScore = score;
-          move = {
-            y,
-            x,
-          };
-        }
-        console.log(score, bestScore, move);
-      }
-    }
-    console.log(this.calculations);
-
-    // console.log("--------------------------------------------")
-    // console.log(move.y, move.x, "move loaction");
-    // // console.log(y,x);
-    // console.log("--------------------------------------------")
-
-    this.data.gameStatus = "playing";
-    this.data.board[move.y][move.x] = 2;
-  }
-
-  minimax(board, depth, isMaximizing) {
-    let result = this.checkForWin();
-    if (depth > 5) {
-      return;
-    }
-    if (result !== null) {
-      this.data.gameStatus = "playing";
-      // console.log(this.scores[result]);
-      return this.scores[result];
-    }
-    if (isMaximizing) {
-      let bestScore = Infinity;
-      for (let x = 0; x <= 6; x++) {
-        if (this.data.board[0][x] === 0) {
-          let boxEmty = true;
-          let y = 0;
-          while (boxEmty) {
-            y++;
-            if (y === 5 && this.data.board[y][x] === 0) {
-              boxEmty = false;
-            }
-            if (!this.data.board[y][x] == 0) {
-              y--;
-              boxEmty = false;
-            }
-          }
-          this.data.board[y][x] = 2;
-          let score;
-
-          this.calculations++;
-          score = this.minimax(this.data.board, depth + 1, false);
-          this.data.board[y][x] = 0;
-          if (score == 1) {
-            // console.log(score, y, x, "ai");
-          }
-          if (bestScore > score) {
-            bestScore = score;
-            // console.log(score, y, x, "ai");
-          }
-
-        }
-      }
-      return bestScore;
-    } else {
-      let bestScore = -Infinity;
-      for (let x = 0; x <= 6; x++) {
-        if (this.data.board[0][x] === 0) {
-          let boxEmty = true;
-          let y = 0;
-          while (boxEmty) {
-            y++;
-            if (y === 5 && this.data.board[y][x] === 0) {
-              boxEmty = false;
-            }
-            if (!this.data.board[y][x] == 0) {
-              y--;
-              boxEmty = false;
-            }
-          }
-          this.data.board[y][x] = 1;
-          let score;
-          this.calculations++;
-          score = this.minimax(this.data.board, depth + 1, true);
-          if (score == -11) {
-            // console.table(this.data.board);
-            // console.log(score);
-          }
-          this.data.board[y][x] = 0;
-          if (score == 1) {
-            // console.log(score, y, x, "ai");
-          }
-          if (bestScore < score) {
-            bestScore = score;
-            // console.log(bestScore, y, x, "player");
-          }
-
-
-        }
-      }
-
-      return bestScore;
-    }
-  }
-
-  _commit() {
+  _commit() {//commit de data
     this.dispatchEvent(new FourInARowEvent(this.data));
   }
 }

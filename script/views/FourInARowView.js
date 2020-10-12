@@ -13,25 +13,20 @@ export class FourInARowView {
 
     }
 
-    bindStartButton() {
+    bindStartButton() {//als de game start veranderd de style en haald hij de namen in
         this.form = document.querySelector("#playerdata");
         this.form.addEventListener("submit", (event) => {
             event.preventDefault();
             this.data.data.player1Name = document.querySelector("#player1").value;
             this.data.data.player2Name = document.querySelector("#player2").value;
-            document.querySelector("#player1name").innerHTML =
-                this.data.data.player1Name + ": ";
-            document.querySelector("#player2name").innerHTML =
-                this.data.data.player2Name + ": ";
+            document.querySelector("#player1name").innerHTML = this.data.data.player1Name + ": ";
+            document.querySelector("#player2name").innerHTML = this.data.data.player2Name + ": ";
             document.getElementById("grid-container").style.visibility = "visible";
             document.getElementById("start").style.display = "none";
-            if (this.data.data.player2Name == "ai") {
-                this.data.data.ai = true;
-            }
         });
     }
 
-    drwawGame(handler) {
+    drwawGame(handler) { //hij tekent de board en player score
         document.getElementById("gameOver").style.display = "none";
         if (this.data.player1Score === undefined) {} else {
             document.querySelector("#player1Score").innerHTML = this.data.player1Score;
@@ -49,7 +44,7 @@ export class FourInARowView {
         }
     }
 
-    Changed(data) {
+    Changed(data) { //de event triggert changed en die stuurt de data door
         this.data = data.data
         if (data.data == null) {
             this.data = data
@@ -59,7 +54,7 @@ export class FourInARowView {
 
     }
 
-    drawMove() {
+    drawMove() { // tekent een move
         for (let y = 0; y <= 5; y++) {
             for (let x = 0; x <= 6; x++) {
                 let box = document.getElementById(y * 7 + x);
@@ -74,7 +69,7 @@ export class FourInARowView {
         }
     }
 
-    gameOver() {
+    gameOver() {//laat het gameover scherm zien
         if (this.data.currentPlayer === this.data.gameStatus || this.data.gameStatus === "Tie") {
             document.getElementById("gameOver").style.display = 'block';
             let text = document.querySelector('#gameOverText');
@@ -111,7 +106,7 @@ export class FourInARowView {
         }
     }
 
-    rematchButton(handler) {
+    rematchButton(handler) {//verwijderd het board
         document.getElementById("rematch").addEventListener("click", () => {
             for (let i = 0; i < 42; i++) {
                 document.getElementById(i).remove();
